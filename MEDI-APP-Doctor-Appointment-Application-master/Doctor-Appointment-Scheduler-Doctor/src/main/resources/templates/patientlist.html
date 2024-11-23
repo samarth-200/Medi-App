@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor's Appointment</title>
+  <link rel="stylesheet" href="list.css">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body class="hero-section vh-100 overflow-hidden">
+
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand text-black" href="#">Em-Doc</a>
+      <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-start sidebar" tabindex="-1" id="offcanvasNavbar"
+        aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header  text-black border-bottem">
+          <h5 class="offcanvas-title " id="offcanvasNavbarLabel" style="font-weight: 400;">Em-Doc</h5>
+          <button type="button" class="btn-close btn-close-black shadow-none" data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column flex-lg-row p-4 p-lg-0 justify-content-center align-items-center">
+          <ul class="navbar-nav justify-content-center align-items-center fs-4 flex-grow-1 pe-3">
+            <li class="nav-item ">
+              <a class="nav-link mx-lg-2 " aria-current="page"
+                style="font-size: medium; font-weight: y00; color: rgb(0, 0, 0);" href="home">HOME</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link mx-lg-2" th:href="@{/patientlist}"
+                style="font-size: medium; font-weight: y00; color: rgb(0, 0, 0);cursor: pointer;">APPOINTMENT'S</a>
+            </li>
+           
+          </ul>
+          <div class="d-flex justify-content-center align-items-center gap-3" style="height: 37px;cursor: pointer;">
+            <a th:href="@{/}" class="text-white  text-decoration-none px-3 py-1 bg-danger rounded-4">LOGOUT</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="table__header">
+    <div class="input-group" style="background-color: #78737344;
+    margin: auto;">
+      <input type="search" placeholder="Search Doctor's" class="text-black">
+    </div>
+    <div class="export__file">
+      <label for="export-file" class="export__file-btn" title="Export File"></label>
+      <input type="checkbox" id="export-file">
+
+    </div>
+  </div>
+  <div class="table__body">
+    <table class="table table-light table-hover">
+      <tr>
+        <th>PATIENT NAME</th>
+        <th>SPECIALIZATION</th>
+        <th>APPOINTMENT DATE</th>
+        <th>EMERGENCY</th>
+        <th>CANCEL APPOINTMENT?</th>
+      </tr>
+      <tbody>
+        <tr valign="top" th:each="app:${appointments}">
+    
+    
+          <td valign="top" th:text="${app.email}">patient email</td>
+          <td valign="top" th:text="${app.docSpecial}">Specialization</td>
+          <td valign="top" th:text="${app.date}">date</td>
+          <td valign="top" th:text="${app.emergency}">Emergency</td>
+          <form method="POST" th:action="@{/cancel1}">
+            <input type="hidden" name="appId" th:value="${app.appId}">
+            <td><button type="submit" value="value" class="link-button btn btn-primary">Cancel</button></td>
+          </form>
+          <td>
+          </td>
+    
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  </div>
+  <script src="script.js"></script>
+
+
+  
+</body>
+
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"></html>
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="register.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body style="background-image: url('six.jpeg');backdrop-filter: blur(10px);">
+    <div class="container d-flex justify-content-center align-items-center min-vh-100"  >
+        <div class="row border rounded-5 p-3 bg-white shadow box-area" style="border-radius: 20px;">
+
+            <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box text-white"
+                style="background-color:rgba(112, 112, 244, 0.838); border-radius: 10px ;  ">
+                <div class="featured-image mb-3">
+                    <img src="" class="img-fluid" style="width: 250px;">
+                </div>
+                <p  class="text-black fs-2" style="font-weight: 600; ;">
+                    </p>
+                <h3 class="text-black text-wrap text-center" id="quote" style="width:17rem; margin-bottom: 40px; font-size: larger;">.</h3>
+            </div>
+            <br>
+
+            <div class="col-md-6 rounded-4 right-box "
+                style="padding: 20px; background-color: rgba(255, 255, 255, 0.82);">
+                <div class="row align-items-center">
+                    <div class="header mb-2" style="    padding-left: 20px;
+                    padding-top: 20px;
+                ">
+                        <h3 style="font-weight:400;">PATIENT REGISTRATION </h3>
+                        <p> </p>
+                    </div>
+                    <form th:action="@{/authenticate}" method="POST" onsubmit="return checkPasswordMatch();"
+                        novalidate="" style="
+                            width: 90%;
+                            margin-left: 20px;
+                       ">
+                        <div class="form-group">
+                            <input id="email" type="email" class="form-control mb-3" name="email" value=""
+                                placeholder="Email-Address" required autofocus>
+                            <div class="invalid-feedback">
+                                Email is invalid
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6 mb-2">
+                                    <input id="password" type="password" class="form-control" name="password" placeholder="Password" required data-eye>
+                                    <div class="invalid-feedback">
+                                        Password is required
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <input id="confirmPassword" type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password" required data-eye>
+                                    <div class="invalid-feedback">
+                                        Please confirm your password
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <button type="button" class="btn btn-lg btn-outline-info btn-block w-100 fs-6 "
+                            onclick="getLocation()">
+                            Get Current Location
+                        </button><br>
+
+                        <div class="form-group m-0">
+                            <button type="submit" class="btn btn-lg btn-primary btn-block w-100 fs-6 mb-3"
+                                >
+                               REGISTER
+                            </button>
+                        </div>
+                        <div class="mt-4 text-center">
+                            Already have an account? <a th:href="@{/patlog}">Login</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function showPosition(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+
+            alert("Latitude: " + latitude + "\nLongitude: " + longitude);
+
+            // Now, you can include the latitude and longitude in your registration form.
+        }
+
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("User denied the request for Geolocation.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    alert("The request to get user location timed out.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occurred.");
+                    break;
+            }
+        }
+
+
+        function checkPasswordMatch() {
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match");
+                return false;
+            }
+
+            return true;
+        }
+     
+                var quotes = [
+                    "“You will not stop them from dying. At best, you will stop them from dying today.”",
+                    "“The art of medicine consists in amusing the patient while nature cures the disease.”",
+                    "“We were meant to rescue each other, not cut down the forest to rescue one.”",
+                    "“Fighting you's the only reward I want,' I said, 'for saving your life.”",
+                    "“And then Nesta began screaming. Not in pain. But a name. Over and over.”",
+                    "“Hide yourself in God, so when a man wants to find you he will have to go there first.”"
+                ];
+        
+                // Function to get a random quote
+               function getRandomQuote() {
+                    return quotes[Math.floor(Math.random() * quotes.length)];
+                }
+                document.getElementById("quote").innerText = getRandomQuote(); 
+           
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&family=Poppins:wght@300&display=swap');
+
+body {
+  
+  background-image: url('wonder.jpeg');
+    background-blend-mode: multiply;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+body,
+html {
+    height: 100%;
+}
+
+.hero-section{
+  
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.container-box {
+    height: 90vh;
+    width: 90vw;
+}
+
+.hero-section::before {
+    position: absolute;
+    background: linear-gradient(rgba(255, 255, 255, 0.548),rgba(117, 116, 116, 0.498));
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: "";
+}
+
+
+.navbar {
+    background: #fffefed6;
+    height: 50px;
+    border-radius: 5px;
+
+}
+
+.hero-section,
+.c1 {
+    position: relative;
+    height: 100vh;
+    z-index: 1;
+   
+}
+
+h3{
+    margin-top: 180px;
+}
+
+
+
+html,
+body {
+    height: 100%;
+}
+
+
+p {
+    margin-top: 17px;
+    margin-bottom: 1rem;
+    font-size: 15px;
+}
